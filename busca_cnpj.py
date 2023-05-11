@@ -1,6 +1,7 @@
 import requests, json
 from openpyxl import Workbook, load_workbook
-from openpyxl import make_merged_pdf
+
+
 while True:
     cnpj=input("Digite o CNPJ que será consultado:\n")
 
@@ -31,11 +32,9 @@ while True:
         sheet['H12'].value=data['cep']
         sheet['B13'].value=data['telefone']
         sheet['B14'].value=data['email']
-
+    
         workbook.save(filename=data['nome']+".xlsx")
         print("Planilha Salva")
-        workbook.SaveAs(pdf_file, FileFormat=57)
-        wb.application.displayalerts = False 
-        wb.Close()
+
     else:
         print("Error: ", response.status_code)
