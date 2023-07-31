@@ -28,6 +28,8 @@ def cadastro_principal():
     sheet['B10'].value=fornecedor.telefone
     sheet['B11'].value=fornecedor.email
 
+
+
 def cadastro_bancario():
     confirma = "n"
     while confirma != "s":
@@ -44,8 +46,8 @@ def cadastro_bancario():
         sheet['B19'].value=conta
 
 def salvar_planilha():
-
-    workbook.save(filename=data['nome']+".xlsx")
+    nome = ''.join(filter(str.isalnum, fornecedor.nome)) 
+    workbook.save(filename=nome +".xlsx")
     print("Planilha Salva")
 
 
@@ -73,10 +75,10 @@ while True:
 
     if response.status_code == 200:
         data = response.json()
-        print("Empresa encontrada: ", data['nome'])
-        fornecedor=fornecedor(data['nome'], data['fantasia'], data['cnpj'], data['logradouro'], data['numero'], data['bairro'], data['uf'], data['cep'], data['telefone'], data['email'])
         
-        respostacorreta= False
+        fornecedor=fornecedor(data['nome'], data['fantasia'], data['cnpj'], data['logradouro'], data['numero'], data['bairro'], data['uf'], data['cep'], data['telefone'], data['email'])
+        print("Empresa encontrada: ",fornecedor.nome)
+        respostacorreta = False
         while respostacorreta == False:
 
         
